@@ -1,5 +1,5 @@
 {
-  "name": "vue2-dnd-joudek",
+  "name": "vue2-dnd",
   "version": "1.0.1",
   "description": "Drag n' Drop plugin for Vue.js",
   "author": "Jikkai Xiao <sonne@asaki.me>",
@@ -9,7 +9,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git@github.com:jikkai/vue2-dnd.git"
+    "url": "git@github.com:oczywisty/vue2-dnd.git"
   },
   "keywords": [
     "vue",
