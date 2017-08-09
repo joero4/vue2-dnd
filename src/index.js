@@ -48,7 +48,7 @@ DnD.install = (Vue) => {
           imIn = myGroup.find((element, index, array) => { return binding.modifiers[element] })
         }
         if (imIn) {
-          binding.value.call(el, vData)
+          binding.value.call(el, vData, el, ev)
           ev.target.classList.remove('dragover')
         } else {
           ev.target.classList.remove('dragover')
