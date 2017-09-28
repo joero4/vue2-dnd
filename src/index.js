@@ -40,6 +40,9 @@ DnD.install = (Vue) => {
         if (ev.stopPropagation) ev.stopPropagation()
         const vData = ev.dataTransfer.getData('data')
         const vGroup = ev.dataTransfer.getData('group')
+        if (vGroup === "") {
+          return;
+        }
         const myGroup = JSON.parse(vGroup)
         let imIn = false
         if (binding.modifiers.length === 0) {

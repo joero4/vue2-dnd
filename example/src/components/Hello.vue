@@ -17,7 +17,7 @@
 
     <draggable class="list-group" element="ul" v-model="list"> 
           <transition-group type="transition" :name="'flip-list'">
-            <li class="list-group-item" v-for="element in list" :key="element.order"> 
+            <li class="list-group-item" v-for="element in list" :key="element.order" v-droppable.fruits="send"> 
               <i :class="element.fixed? 'fa fa-anchor' : 'glyphicon glyphicon-pushpin'" @click=" element.fixed=! element.fixed" aria-hidden="true"></i>
               {{element.name}}
               <span class="badge">{{element.order}}</span>
@@ -44,7 +44,7 @@ export default {
     }
   },
   methods: {
-    send: function ($ev) {
+    send: function ($ev, data, el) {
     	console.log($ev)
     	this.home.push(JSON.parse($ev))
     }
@@ -71,5 +71,9 @@ li {
 
 a {
   color: #42b983;
+}
+
+.list-group-item { border: 1px solid #ddd;
+  padding: 10px;
 }
 </style>
