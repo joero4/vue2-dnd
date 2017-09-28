@@ -1,5 +1,5 @@
 let DnD = {}
-
+let dragEnterTarget = null
 DnD.install = (Vue) => {
   Vue.directive('draggable', {
     bind (el, binding, vnode) {
@@ -47,6 +47,7 @@ DnD.install = (Vue) => {
         } else {
           imIn = myGroup.find((element, index, array) => { return binding.modifiers[element] })
         }
+        dragEnterTarget = null;
         if (imIn) {
           binding.value.call(el, vData, el, ev)
           ev.target.classList.remove('dragover')
@@ -56,11 +57,20 @@ DnD.install = (Vue) => {
       }
       const dragOver = (ev) => {
         if (ev.preventDefault) ev.preventDefault()
-        ev.target.classList.add('dragover')
+        if (dragEnterTarget == null){
+          dragEnterTarget = ev.target
+          ev.target.classList.add('dragover')
+          console.log('dragenter')
+        }
       }
       const dragLeave = (ev) => {
         if (ev.preventDefault) ev.preventDefault()
-        ev.target.classList.remove('dragover')
+        if (ev.target == dragEnterTarget){
+          ev.target.classList.remove('dragover')
+          dragEnterTarget = null
+          console.log('dragLeave')
+        }            
+         
       }
       el.addEventListener('drop', drop)
       el.addEventListener('dragover', dragOver)

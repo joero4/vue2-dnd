@@ -1,0 +1,49 @@
+<html>
+    <head>
+        <style>
+        #app > section {
+            min-height: 120px;
+            margin-bottom: 24px;
+            background: #FFF;
+            border: 1px dashed #888;
+        }
+</style>
+    </head>
+    <body>
+        <div id="app">
+            <section id="drag">
+                <div v-for="fruit in fruits" v-draggable.fruits="fruit">
+                    {{ fruit }}
+                </div>
+            </section>
+        
+            <section id="drop" v-droppable.fruits="send">
+                <div v-for="item in home">
+                    {{ item }}
+                </div>
+            </section>
+        </div>
+        <script src="https://unpkg.com/vue"></script>
+        <!-- <script src="../src/index.js"></script> -->
+        <script>
+
+            import { Vue2Dnd } from '../src/index.js'
+
+            Vue.use(Vue2Dnd)
+            
+            new Vue({
+              el: '#app',
+              data: {
+                fruits: ['apple', 'peach', 'pear'],
+                home: []
+              },
+              methods: {
+                send: function ($ev) {
+                    console.log($ev)
+                    this.home.push(JSON.parse($ev))
+                }
+              }
+            })
+        </script>
+    </body>
+</html>
