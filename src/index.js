@@ -41,7 +41,6 @@ DnD.install = (Vue) => {
         const vData = ev.dataTransfer.getData('data')
         const vGroup = ev.dataTransfer.getData('group')
         if (vGroup === "") {
-          console.log("no group found")
           return;
         }
         const myGroup = JSON.parse(vGroup)
