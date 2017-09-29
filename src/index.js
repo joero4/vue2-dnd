@@ -42,10 +42,10 @@ DnD.install = (Vue) => {
       const drop = (ev) => {
         if (ev.preventDefault) ev.preventDefault()
         if (ev.stopPropagation) ev.stopPropagation()
-        console.log("drop")
         const vData = ev.dataTransfer.getData('data')
         const vGroup = ev.dataTransfer.getData('group')
         if (vGroup === "") {
+          ev.target.classList.remove('dragover')
           return;
         }
         const myGroup = JSON.parse(vGroup)
