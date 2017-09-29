@@ -1,5 +1,9 @@
 let DnD = {}
 let dragEnterTarget = null
+let isFunction = function(functionToCheck) {
+  var getType = {}
+  return functionToCheck && getType.toString.call(functionToCheck) === '[object Function]'
+}
 DnD.install = (Vue) => {
   Vue.directive('draggable', {
     bind (el, binding, vnode) {
@@ -52,7 +56,11 @@ DnD.install = (Vue) => {
         }
         dragEnterTarget = null;
         if (imIn) {
-          binding.value.call(el, vData, el, ev)
+          if (isFunction(binding.value)) {
+            binding.value.call(el, vData, el, ev)
+          } else {
+            binding.value.event.call(el, vData, el, ev, binding.value.data)
+          }          
           ev.target.classList.remove('dragover')
         } else {
           ev.target.classList.remove('dragover')
